@@ -1,91 +1,82 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
+'use client'
 
-const inter = Inter({ subsets: ['latin'] })
+import EmphasisedFeature from '../components/EmphasisedFeature'
+import Navbar from '../components/Navbar'
+import DeliverFast from '@/components/DeliverFast'
+import BusinessOption from '@/components/BusinessOption'
+import PricingCard from '@/components/PricingCard'
+import HireUs from '@/components/HireUs'
+import { pricingData } from '@/utils/pricing'
+import Testimonial from '@/components/Testimonial'
+import ContactForm from '@/components/ContactForm'
+import Footer from '@/components/Footer'
 
 export default function Home() {
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
+    <div className='w-screen flex flex-col items-center p-[20px]'>
+      <Navbar />
+
+      {/* Hero Section */}
+      <div className='w-full mt-[40px] flex flex-col items-center'>
+        <p className='text-4xl font-bold font-abrilFlatface tracking-wider text-center'>
+          Let's skyrocket your business
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+        <p className='text-2xl font-pacifico text-teal-400'>
+          # Go Online
+        </p>
+
+        {/* Business Option  */}
+        <BusinessOption />
+
+        {/* Video */}
+        <div className='flex justify-center relative mt-[10px]'>
+          <video controls className='w-full h-[12rem] md:h-[25rem] rounded-xl mt-[30px]'>
+            <source src='/intro_video.mp4' />
+          </video>
         </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+        {/* Emphasized Feature */}
+        <div className='flex justify-between items-center mt-[30px] md:gap-[30px]'>
+          <EmphasisedFeature text='Best Design' />
+          <EmphasisedFeature text='User Experience' />
+          <EmphasisedFeature text='Follow up' />
         </div>
+
+        {/* Features */}
+
+        <HireUs />
+
+        {/* Pricing Card */}
+        <p className='mt-[40px] text-center text-4xl font-bold font-abrilFlatface tracking-wider'>
+          Our Pricing
+        </p>
+        <p className='mb-[30px] text-center font-poppins text-xl'>
+          We provide our services at reasonable price.
+        </p>
+        <div className='w-full md:w-10/12 flex flex-col items-center md:flex-row md:justify-center md:flex-wrap gap-[20px]'>
+          {
+            pricingData.map((item, index) => (
+              <PricingCard key={index} business={item.business} money={item.price} />
+            ))
+          }
+        </div>
+
+        <DeliverFast />
+        {/*  Testimonials  */}
+        <p className='text-3xl font-bold font-abrilFlatface tracking-wider text-center mt-[40px]'>
+          What other's say about us
+        </p>
+        <Testimonial />
+
+        {/* Contact Form */}
+        <p className='text-3xl font-bold font-abrilFlatface tracking-wider text-center mt-[40px]'>
+          Contact Us
+        </p>
+        <ContactForm />
       </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <Footer />
+    </div>
   )
 }
