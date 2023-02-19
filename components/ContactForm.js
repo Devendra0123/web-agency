@@ -15,6 +15,7 @@ const ContactForm = () => {
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [clientInfo, setClientInfo] = useState('')
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const mailMessage = `
@@ -23,21 +24,24 @@ const ContactForm = () => {
     <p>Email: <span>${email}</span></p>
     <p>message: <span>${message}</span></p>
  `
- setClientInfo(mailMessage)
-  }, [name,email,message,number])
+    setClientInfo(mailMessage)
+  }, [name, email, message, number])
 
   const sendMessage = async (e) => {
-    e.preventDefault()
-    try{
+    e.preventDefault();
+    setIsLoading(true);
+    try {
       await emailjs.sendForm(process.env.NEXT_PUBLIC_MAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_MAILJS_TEMPLATE_ID, form.current, process.env.NEXT_PUBLIC_MAILJS_PUBLIC_KEY);
       toast.success('message sent successfully!');
+      setIsLoading(false)
       setName('');
       setMessage('');
       setEmail('');
       setNumber('')
     }
-    catch(error){
-      toast.error(`Something went wrong. Resend!!`)
+    catch (error) {
+      toast.error(`Something went wrong. Resend!!`);
+      setIsLoading(false)
     }
   }
   return (
@@ -70,38 +74,38 @@ const ContactForm = () => {
         <form onSubmit={sendMessage} className='flex flex-col gap-[15px] mt-[20px]'>
           <label className='flex flex-col'>
             Name
-            <input type='text' onChange={(e)=> setName(e.target.value)} value={name} className='outline-none p-[10px] text-black' />
+            <input type='text' onChange={(e) => setName(e.target.value)} value={name} className='outline-none p-[10px] text-black' />
           </label>
 
           <label className='flex flex-col'>
             Email
-            <input type='email' onChange={(e)=> setEmail(e.target.value)} value={email} className='outline-none p-[10px] text-black' />
+            <input type='email' onChange={(e) => setEmail(e.target.value)} value={email} className='outline-none p-[10px] text-black' />
           </label>
 
           <label className='flex flex-col'>
             Mobile Number
-            <input type='number' onChange={(e)=> setNumber(e.target.value)} value={number} className='outline-none p-[10px] text-black' />
+            <input type='number' onChange={(e) => setNumber(e.target.value)} value={number} className='outline-none p-[10px] text-black' />
           </label>
 
           <label className='flex flex-col'>
             Message
-            <textarea onChange={(e)=> setMessage(e.target.value)} value={message} className='outline-none p-[10px] text-black' />
+            <textarea onChange={(e) => setMessage(e.target.value)} value={message} className='outline-none p-[10px] text-black' />
           </label>
 
-          <button type='submit' className='w-max bg-yellow-400 text-[#242C35] font-bold relative left-[100%] transform translate-x-[-100%] px-[20px] py-[10px]'>
-            S E N D
+          <button type='submit' disabled={isLoading} className='w-max bg-yellow-400 text-[#242C35] font-bold relative left-[100%] transform translate-x-[-100%] px-[20px] py-[10px]'>
+            {isLoading ? 'Wait...' : 'S E N D'}
           </button>
         </form>
 
         {/*  For EMAIL JS  */}
         <form ref={form} onSubmit={sendMessage} className='hidden'>
 
-        <input type="text" name="user_name" readOnly value={name} />
+          <input type="text" name="user_name" readOnly value={name} />
 
-        <input type="email" name="user_email" readOnly value={process.env.NEXT_PUBLIC_REEDON_WEB_MAIL} />
+          <input type="email" name="user_email" readOnly value={process.env.NEXT_PUBLIC_REEDON_WEB_MAIL} />
 
-        <textarea name="message" readOnly value={`${clientInfo}`} className='hidden' />
-      </form>
+          <textarea name="message" readOnly value={`${clientInfo}`} className='hidden' />
+        </form>
       </div>
     </div>
   )
