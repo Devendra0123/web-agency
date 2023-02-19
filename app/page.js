@@ -31,7 +31,7 @@ export default function Home() {
 
         {/* Video */}
         <div className='flex justify-center relative mt-[10px]'>
-          <video controls className='w-full h-[20rem] md:h-[40rem] rounded-xl mt-[30px]'>
+          <video controls className='w-full h-[15rem] md:h-[30rem] rounded-xl mt-[30px]'>
             <source src='/intro_video.mp4' />
           </video>
         </div>
