@@ -10,6 +10,7 @@ import { pricingData } from '@/utils/pricing'
 import Testimonial from '@/components/Testimonial'
 import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
+import Video from '@/components/Video'
 
 export default function Home() {
 
@@ -30,11 +31,7 @@ export default function Home() {
         <BusinessOption />
 
         {/* Video */}
-        <div className='flex justify-center relative mt-[10px]'>
-          <video controls className='w-full h-[12rem] md:h-[25rem] rounded-xl mt-[30px]'>
-            <source src='/intro_video.mp4' />
-          </video>
-        </div>
+      <Video />
 
         {/* Emphasized Feature */}
         <div className='flex justify-between items-center mt-[30px] md:gap-[30px]'>
