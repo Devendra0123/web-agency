@@ -18,7 +18,7 @@ const Video = () => {
           }
     }
   return (
-    <div className='relative flex justify-center relative mt-[10px]'>
+    <div className='relative flex justify-center relative mt-[30px]'>
     <video ref={videoRef} src='/intro_video.mp4' className='w-full h-[12rem] md:h-[25rem] rounded-xl mt-[30px]'>
     </video>
     <div onClick={handlePlayPause} className='cursor-pointer absolute bottom-[8%] md:bottom-[9%] left-[48%] md:left-[50%] transform translate-x-[-50%] flex items-center gap-[5px] bg-white p-[10px] py-[5px] md:px-[30px] md:py-[15px] rounded-xl'>
