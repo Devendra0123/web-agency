@@ -33,13 +33,6 @@ export default function Home() {
         {/* Video */}
       <Video />
 
-        {/* Emphasized Feature */}
-        <div className='flex justify-between items-center mt-[30px] md:gap-[30px]'>
-          <EmphasisedFeature text='Best Design' />
-          <EmphasisedFeature text='User Experience' />
-          <EmphasisedFeature text='Follow up' />
-        </div>
-
         {/* Features */}
 
         <HireUs />
