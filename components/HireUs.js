@@ -5,7 +5,7 @@ import FeatureTitle from './FeatureTitle'
 
 const HireUs = () => {
     return (
-        <div className='w-full flex flex-col items-center mt-[40px]'>
+        <div className='w-full flex flex-col items-center mt-[50px]'>
             <FeatureTitle
                 title='Hire our elite web developers'
                 subtitle='Our team has worked with so many brands and has been able to provide satisfaction to our clients' />
